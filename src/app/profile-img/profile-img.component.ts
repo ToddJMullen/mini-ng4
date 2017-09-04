@@ -2,21 +2,24 @@ import {Component, OnInit} from '@angular/core';
 
 @Component({
 	selector: 'app-profile-img',
-	template:`
+	template:`<div  *ngFor = "let user of userAry">
 		<div class="profile">
-			<b>{{username}}</b>
-			<img src="{{imageSrc}}"
-					title="{{username}}'s photo"
-					alt="{{username}}'s photo" />
+			<b>{{user.username}}</b>
+			<img src="{{user.imageSrc}}"
+					title="{{user.username}}'s photo"
+					alt="{{user.username}}'s photo" />
 		</div>
+	</div>
 	`,
 //	templateUrl: './profile-img.component.html',
 	styleUrls: [ './profile-img.component.css' ]
 })
 export class ProfileImgComponent implements OnInit {
 
-	imageSrc: string = "";
-	username: string = "";
+	MIN_NUM_USERS:number = 20;
+	MIN_LENGTH_USERNAME:number = 4;
+
+	userAry: Object[] = [];
 
 	/**
 	 * The only reason that I created this component was as an excuse to create a component
@@ -24,14 +27,28 @@ export class ProfileImgComponent implements OnInit {
 	 * */
 
 	constructor() {
-		this.imageSrc = "image" + Math.round(Math.random() * 100) + ".jpg";
+
 		do{
-			this.username += this.getRandomString( false );
-		} while (this.username.length < 6 && (.9 > Math.random()) );
-		this.username += this.getRandomString(true);
+			console.log("Building new user");
+			this.userAry.push( this.buildRandomUser() );
+
+		} while ( this.userAry.length < this.MIN_NUM_USERS );
 	}
 
 	ngOnInit() {
+	}
+
+	buildRandomUser():Object{
+		let user = {imageSrc:"",username:""};
+
+		user.imageSrc = "image" + Math.round(Math.random() * 100) + ".jpg";
+		do{
+			user.username += this.getRandomString( false );
+		} while (user.username.length < this.MIN_LENGTH_USERNAME
+					 || (.8 < Math.random()) /* << semi-arbitrary exit*/ );
+		user.username += this.getRandomString(true);
+
+		return user;
 	}
 
 	getRandomString( withNums:boolean = false ):string{
