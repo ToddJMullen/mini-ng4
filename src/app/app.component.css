@@ -6,3 +6,10 @@
 app-des-cour-comp1{
 	border: 1px inset teal;
 }
+
+app-profile-img{
+	display: inline-block;
+	margin: 5px;
+	border: 3px outset yellow;
+	padding: 10px;
+}

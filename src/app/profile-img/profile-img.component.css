@@ -1,0 +1,9 @@
+b{
+	display: block;
+	margin: 2px;
+	text-align: center;
+}
+img{
+	border: 1px outset teal;
+	padding: 2px;
+}
