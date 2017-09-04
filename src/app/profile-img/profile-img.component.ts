@@ -2,19 +2,21 @@ import {Component, OnInit} from '@angular/core';
 
 @Component({
 	selector: 'app-profile-img',
-	inputs: ['header'],//<< @ binding to/from markup
+	inputs: ['user'],//<< @ binding to/from markup
 	template:`
-	<h2>{{header}}</h2>
-	<div *ngFor = "let user of userAry">
 		<div class="profile" [ngClass]="user.styles" >
 			<b (click)=dump($event) >{{user.username}}</b>
+			<br />
 
 			<i *ngIf="user.role != 'Anonymous' then showImage else showNote" ></i>
 			<ng-template #showImage>
-				<img bind-title="user.username" alt="{{user.username}}'s photo" />
-				<br />{{user.imageSrc}}
+				Signature
+				<br />
+				<i bind-title="user.username">
+				{{user.imageSrc}}
+				</i>
 			</ng-template>
-			<ng-template #showNote>Anon User</ng-template>
+			<ng-template #showNote>Anon User <br />(no signature)</ng-template>
 
 			<hr />
 			<i>{{user.role}}</i>
@@ -36,7 +38,6 @@ import {Component, OnInit} from '@angular/core';
 			Is Italic?
 			<br />
 		</div>
-	</div>
 	`,
 //	templateUrl: './profile-img.component.html',
 	styleUrls: [ './profile-img.component.css' ]
@@ -48,6 +49,9 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ProfileImgComponent implements OnInit {
 
+	user:object;
+
+	/* //moved into the "list" component
 	MIN_NUM_USERS:number = 3;
 	MIN_LENGTH_USERNAME:number = 3;
 
@@ -56,6 +60,7 @@ export class ProfileImgComponent implements OnInit {
 	header:string;// = "Header";
 
 	userAry: Object[] = [];
+	*/
 
 	/**
 	 * The only reason that I created this component was as an excuse to create a component
@@ -64,16 +69,23 @@ export class ProfileImgComponent implements OnInit {
 
 	constructor() {
 
+		/* //moved into the "list" component
 		do{
 			//console.log("Building new user");
 			this.userAry.push( this.buildRandomUser() );
 
 		} while ( this.userAry.length < this.MIN_NUM_USERS );
+		*/
 	}
 
 	ngOnInit() {
 	}
 
+	dump( event:Event ):void{
+		console.log("Event:", event );
+	}
+
+	/* //moved into the "list" component
 	dump( event:Event ):void{
 		console.log("Event:", event );
 	}
@@ -86,7 +98,7 @@ export class ProfileImgComponent implements OnInit {
 		do{
 			user.username += this.getRandomString( false );
 		} while (user.username.length < this.MIN_LENGTH_USERNAME
-					 || (.8 < Math.random()) /* << semi-arbitrary exit*/ );
+					 || (.8 < Math.random())  );
 
 		user.username += this.getRandomString(true);
 		user.role = this.ROLE_ARY[ Math.floor(Math.random() * this.ROLE_ARY.length) ];
@@ -103,5 +115,6 @@ export class ProfileImgComponent implements OnInit {
 		}
 		return str;
 	}
+	*/
 
 }

@@ -1,10 +1,21 @@
 #ngImg{
-	width: 30px;
+	width: 70px;
 	position: fixed; top: 5px; right: 5px;
 }
 
-app-des-cour-comp1{
+.main{
 	border: 1px inset teal;
+	/*float: left;*/
+	padding: 15px;
+	margin: auto;
+}
+.main h1{
+	text-align: center;
+}
+
+.profile-box{
+	width: 60%;
+	margin: auto auto;
 }
 
 app-profile-img{
@@ -14,6 +25,13 @@ app-profile-img{
 	padding: 2px;
 	float: left;
 }
+app-profile-img:last-child{
+	/*clear: right;*/
+	margin-bottom: 10px;
+}
 h2{
 	display: inline-block;
+}
+br:last-of-type{
+	clear: both;
 }
