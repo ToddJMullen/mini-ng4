@@ -1,0 +1,8 @@
+#ngImg{
+	width: 30px;
+	position: fixed; top: 5px; right: 5px;
+}
+
+app-des-cour-comp1{
+	border: 1px inset teal;
+}

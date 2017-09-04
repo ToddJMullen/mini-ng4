@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DesCourComp1Component implements OnInit {
 
+	subTitle:string = "This is the sub title!";
+
   constructor() { }
 
   ngOnInit() {
