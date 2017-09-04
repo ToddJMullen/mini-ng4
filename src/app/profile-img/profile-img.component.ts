@@ -5,9 +5,15 @@ import {Component, OnInit} from '@angular/core';
 	template:`<div  *ngFor = "let user of userAry">
 		<div class="profile">
 			<b>{{user.username}}</b>
-			<img src="{{user.imageSrc}}"
+			<i *ngIf="user.role != 'Anonymous' then showImage else showNote" ></i>
+			<ng-template #showImage>
+				<img src="{{user.imageSrc}}"
 					title="{{user.username}}'s photo"
 					alt="{{user.username}}'s photo" />
+			</ng-template>
+			<ng-template #showNote>Anon User</ng-template>
+			<hr />
+			<i>{{user.role}}</i>
 		</div>
 	</div>
 	`,
@@ -16,8 +22,10 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ProfileImgComponent implements OnInit {
 
-	MIN_NUM_USERS:number = 20;
-	MIN_LENGTH_USERNAME:number = 4;
+	MIN_NUM_USERS:number = 10;
+	MIN_LENGTH_USERNAME:number = 3;
+
+	ROLE_ARY:string[] = ["Admin","Teacher","User","Anonymous"];
 
 	userAry: Object[] = [];
 
@@ -39,14 +47,16 @@ export class ProfileImgComponent implements OnInit {
 	}
 
 	buildRandomUser():Object{
-		let user = {imageSrc:"",username:""};
+		let user = {imageSrc:"",username:"",role:""};
 
 		user.imageSrc = "image" + Math.round(Math.random() * 100) + ".jpg";
 		do{
 			user.username += this.getRandomString( false );
 		} while (user.username.length < this.MIN_LENGTH_USERNAME
 					 || (.8 < Math.random()) /* << semi-arbitrary exit*/ );
+
 		user.username += this.getRandomString(true);
+		user.role = this.ROLE_ARY[ Math.floor(Math.random() * this.ROLE_ARY.length) ];
 
 		return user;
 	}
