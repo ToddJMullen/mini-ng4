@@ -2,7 +2,10 @@ import {Component, OnInit} from '@angular/core';
 
 @Component({
 	selector: 'app-profile-img',
-	template:`<div  *ngFor = "let user of userAry">
+	inputs: ['header'],//<< @ binding to/from markup
+	template:`
+	<h2>{{header}}</h2>
+	<div *ngFor = "let user of userAry">
 		<div class="profile">
 			<b>{{user.username}}</b>
 			<i *ngIf="user.role != 'Anonymous' then showImage else showNote" ></i>
@@ -31,6 +34,8 @@ export class ProfileImgComponent implements OnInit {
 	MIN_LENGTH_USERNAME:number = 3;
 
 	ROLE_ARY:string[] = ["Admin","Teacher","User","Anonymous"];
+
+	header:string;// = "Header";
 
 	userAry: Object[] = [];
 
