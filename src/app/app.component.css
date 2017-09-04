@@ -14,7 +14,9 @@
 }
 
 .profile-box{
-	width: 60%;
+	width: 700px;
+	border: 1px outset goldenrod;
+	border-radius: 10px;
 	margin: auto auto;
 }
 

@@ -9,5 +9,6 @@ app-profile-img{
 	display: inline-block;
 	float: left;
 	padding: 5px;
-	min-height: 175px;
+	width: 200px;
+	min-height: 200px;
 }
