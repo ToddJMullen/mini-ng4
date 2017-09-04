@@ -7,8 +7,8 @@ import {Component, OnInit} from '@angular/core';
 			<b>{{user.username}}</b>
 			<i *ngIf="user.role != 'Anonymous' then showImage else showNote" ></i>
 			<ng-template #showImage>
-				<img src="{{user.imageSrc}}"
-					title="{{user.username}}'s photo"
+				<img [src]="user.imageSrc"
+					bind-title="user.username"
 					alt="{{user.username}}'s photo" />
 			</ng-template>
 			<ng-template #showNote>Anon User</ng-template>
