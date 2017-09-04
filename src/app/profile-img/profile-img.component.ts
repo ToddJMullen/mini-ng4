@@ -49,7 +49,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ProfileImgComponent implements OnInit {
 
-	user:object;
+	user:object;//still not sure how to bind/move checkbox changes into the original user object.
 
 	/* //moved into the "list" component
 	MIN_NUM_USERS:number = 3;
