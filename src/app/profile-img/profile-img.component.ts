@@ -14,6 +14,11 @@ import {Component, OnInit} from '@angular/core';
 			<ng-template #showNote>Anon User</ng-template>
 			<hr />
 			<i>{{user.role}}</i>
+			<br />
+			<button [disabled]="user.role == 'User'">Users No Click</button>
+			<br />
+			<input type="checkbox" [checked]='user.checked == "Yes" ' />
+			Checked? {{user.checked}}
 		</div>
 	</div>
 	`,
@@ -47,7 +52,7 @@ export class ProfileImgComponent implements OnInit {
 	}
 
 	buildRandomUser():Object{
-		let user = {imageSrc:"",username:"",role:""};
+		let user = {imageSrc:"",username:"",role:"", checked:"" };
 
 		user.imageSrc = "image" + Math.round(Math.random() * 100) + ".jpg";
 		do{
@@ -57,6 +62,7 @@ export class ProfileImgComponent implements OnInit {
 
 		user.username += this.getRandomString(true);
 		user.role = this.ROLE_ARY[ Math.floor(Math.random() * this.ROLE_ARY.length) ];
+		user.checked = Math.random() < .5 ? "Yes" : "No";
 
 		return user;
 	}
