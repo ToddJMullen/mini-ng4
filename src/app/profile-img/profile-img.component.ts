@@ -6,31 +6,49 @@ import {Component, OnInit} from '@angular/core';
 	template:`
 	<h2>{{header}}</h2>
 	<div *ngFor = "let user of userAry">
-		<div class="profile">
-			<b>{{user.username}}</b>
+		<div class="profile" [ngClass]="user.styles" >
+			<b (click)=dump($event) >{{user.username}}</b>
+
 			<i *ngIf="user.role != 'Anonymous' then showImage else showNote" ></i>
 			<ng-template #showImage>
-				<img [src]="user.imageSrc"
-					bind-title="user.username"
-					alt="{{user.username}}'s photo" />
+				<img bind-title="user.username" alt="{{user.username}}'s photo" />
+				<br />{{user.imageSrc}}
 			</ng-template>
 			<ng-template #showNote>Anon User</ng-template>
+
 			<hr />
 			<i>{{user.role}}</i>
 			<br />
-			<button [disabled]="user.role == 'User'">Users No Click</button>
+			<button [disabled]="user.role == 'User'"
+				title="If the user is a 'User' this is disabled.">No Users</button>
 			<br />
 			<input type="checkbox" [checked]='user.checked == "Yes" ' />
 			Checked? {{user.checked}}
+			<br />
+			<input type="checkbox" bind-checked='user.styles.isGreen'
+					(click)="user.style.isGreen = !user.style.isGreen" />
+			Is Green?
+			<br />
+			<input type="checkbox" [checked]='user.styles.isBig' />
+			Is Big?
+			<br />
+			<input type="checkbox" [checked]='user.styles.isItalic' />
+			Is Italic?
+			<br />
 		</div>
 	</div>
 	`,
 //	templateUrl: './profile-img.component.html',
 	styleUrls: [ './profile-img.component.css' ]
+	,styles:[`
+		.isBig{font-size: 25px;}
+		.isGreen{color:#0F0;}
+		.isItalic{font-style:italic;}
+	`]
 })
 export class ProfileImgComponent implements OnInit {
 
-	MIN_NUM_USERS:number = 10;
+	MIN_NUM_USERS:number = 3;
 	MIN_LENGTH_USERNAME:number = 3;
 
 	ROLE_ARY:string[] = ["Admin","Teacher","User","Anonymous"];
@@ -47,7 +65,7 @@ export class ProfileImgComponent implements OnInit {
 	constructor() {
 
 		do{
-			console.log("Building new user");
+			//console.log("Building new user");
 			this.userAry.push( this.buildRandomUser() );
 
 		} while ( this.userAry.length < this.MIN_NUM_USERS );
@@ -56,8 +74,13 @@ export class ProfileImgComponent implements OnInit {
 	ngOnInit() {
 	}
 
+	dump( event:Event ):void{
+		console.log("Event:", event );
+	}
+
 	buildRandomUser():Object{
-		let user = {imageSrc:"",username:"",role:"", checked:"" };
+		let user = {imageSrc:"",username:"",role:"", checked:""
+				,styles: {isBig:false,isGreen:false,isItalic:true} };
 
 		user.imageSrc = "image" + Math.round(Math.random() * 100) + ".jpg";
 		do{
