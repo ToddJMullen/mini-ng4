@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-
+import {UserVo} from "../user-vo";
 import {UserService} from "../user.service";
 
 @Component({
@@ -20,7 +20,7 @@ export class ProfileListComponent implements OnInit {
 	start:number;
 	count:number;
 
-	userAry:object[];
+	userAry:UserVo[];
 
 
 	constructor( private _userService:UserService ) {

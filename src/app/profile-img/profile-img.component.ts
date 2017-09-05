@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
+import {UserVo} from "../user-vo";
+
 @Component({
 	selector: 'app-profile-img',
 	inputs: ['user'],//<< @ binding to/from markup
@@ -49,7 +51,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ProfileImgComponent implements OnInit {
 
-	user:object;//still not sure how to bind/move checkbox changes into the original user object.
+	user:UserVo;//still not sure how to bind/move checkbox changes into the original user object.
 
 	/* //moved into the "list" component
 	MIN_NUM_USERS:number = 3;
@@ -59,7 +61,7 @@ export class ProfileImgComponent implements OnInit {
 
 	header:string;// = "Header";
 
-	userAry: Object[] = [];
+	userAry: UserVo[] = [];
 	*/
 
 	/**
@@ -90,7 +92,7 @@ export class ProfileImgComponent implements OnInit {
 		console.log("Event:", event );
 	}
 
-	buildRandomUser():Object{
+	buildRandomUser():UserVo{
 		let user = {imageSrc:"",username:"",role:"", checked:""
 				,styles: {isBig:false,isGreen:false,isItalic:true} };
 

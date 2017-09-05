@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 
+import { UserVo } from "./user-vo";
+
 @Injectable()
 export class UserService {
 
@@ -11,7 +13,7 @@ export class UserService {
 
 	totalUsers:number;
 
-	userAry: Object[] = [];
+	userAry: UserVo[] = [];
 
 
 	constructor() {
@@ -19,7 +21,7 @@ export class UserService {
 	}
 
 
-	getUsers( start:number, count:number):object[]{
+	getUsers( start:number, count:number):UserVo[]{
 		start = +start; count = +count;
 		let first = Math.max(start - 1, 0);
 		let last = first + count;
@@ -32,7 +34,7 @@ export class UserService {
 		return copy;
 	}
 
-	fetchMakeUsers( count:number = this.MIN_NUM_USERS ){
+	fetchMakeUsers( count:number = this.MIN_NUM_USERS ):void{
 
 		this.totalUsers = count;
 
@@ -45,9 +47,10 @@ export class UserService {
 	}
 
 
-	buildRandomUser():Object{
-		let user = {imageSrc:"",username:"",role:"", checked:""
-				,styles: {isBig:false,isGreen:false,isItalic:true} };
+	buildRandomUser():UserVo{
+		let user = new UserVo();
+			//{imageSrc:"",username:"",role:"", checked:""
+			//	,styles: {isBig:false,isGreen:false,isItalic:true} };
 
 		user.imageSrc = "image" + Math.round(Math.random() * 100) + ".jpg";
 		do{

@@ -45,7 +45,7 @@ export class AppComponent {
 		this.imageState = this.STATE_NORMAL;
 	}
 
-	toggleImage(): void {
+	toggleState(): void {
 		switch (this.imageState) {
 			case this.STATE_BIG: this.scaleDown(); break;
 			case this.STATE_SMALL: this.scaleNormal(); break;
