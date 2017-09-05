@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule }	from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
 
 import {UserService } from "./user.service";
@@ -15,7 +16,7 @@ import { ProfileListComponent } from './profile-list/profile-list.component';
   ],
   imports: [
     BrowserModule
-	,
+	,BrowserAnimationsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
