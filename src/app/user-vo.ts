@@ -3,20 +3,19 @@ export class UserVo {
 	username:string = "";
 	role:string = "";
 	checked:string = "";
-	styles:object = {
-		isBig:false
-		,isGreen:false
-		,isItalic:true
-	};
+	isBig:boolean = false
+	isGreen:boolean = false;
+	isItalic:boolean = true;
 
-	constructor(imageSrc:string = "", username:string = "",role:string =""
-				,checked:string = "yes"
-				,styles:object = {isBig:false,isGreen:false,isItalic:true} ){
+	constructor(imageSrc:string = "", username:string = "",role:string = "", checked:string = "yes"
+					,isBig:boolean = false, isGreen:boolean = false, isItalic:boolean = true ){
 		this.imageSrc = imageSrc;
 		this.username = username;
 		this.role = role;
 		this.checked = checked;
-		this.styles = styles;
+		this.isBig = isBig;
+		this.isGreen = isGreen;
+		this.isItalic = isItalic;
 	}
 
 }

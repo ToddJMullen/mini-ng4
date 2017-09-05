@@ -6,7 +6,7 @@ import {UserVo} from "../user-vo";
 	selector: 'app-profile-img',
 	inputs: ['user'],//<< @ binding to/from markup
 	template:`
-		<div class="profile" [ngClass]="user.styles" >
+		<div class="profile"  >
 			<b (click)=dump($event) >{{user.username}}</b>
 			<br />
 
@@ -29,14 +29,14 @@ import {UserVo} from "../user-vo";
 			<input type="checkbox" [checked]='user.checked == "Yes" ' />
 			Checked? {{user.checked}}
 			<br />
-			<input type="checkbox" bind-checked='user.styles.isGreen'
-					(click)="user.style.isGreen = !user.style.isGreen" />
+			<input type="checkbox" bind-checked='user.isGreen'
+					(click)="user.isGreen = !user.isGreen" />
 			Is Green?
 			<br />
-			<input type="checkbox" [checked]='user.styles.isBig' />
+			<input type="checkbox" [checked]='user.isBig' />
 			Is Big?
 			<br />
-			<input type="checkbox" [checked]='user.styles.isItalic' />
+			<input type="checkbox" [checked]='user.isItalic' />
 			Is Italic?
 			<br />
 		</div>

@@ -61,6 +61,9 @@ export class UserService {
 		user.username += this.getRandomString(true);
 		user.role = this.ROLE_ARY[ Math.floor(Math.random() * this.ROLE_ARY.length) ];
 		user.checked = Math.random() < .5 ? "Yes" : "No";
+		user.isBig = Math.random() < .5 ? true : false;
+		user.isGreen = Math.random() < .5 ? true : false;
+		user.isItalic = Math.random() < .5 ? true : false;
 
 		return user;
 	}
