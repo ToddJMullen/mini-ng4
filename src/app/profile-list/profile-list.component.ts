@@ -4,7 +4,7 @@ import {UserService} from "../user.service";
 
 @Component({
 	selector: 'app-profile-list',
-	inputs: [ 'header' ]
+	inputs: [ 'header',"start","count" ]
 	, template: `
 	<h2>{{header}}</h2>
 	<div class="profile list">
@@ -17,6 +17,8 @@ import {UserService} from "../user.service";
 export class ProfileListComponent implements OnInit {
 
 	header:string;// = "Header";
+	start:number;
+	count:number;
 
 	userAry:object[];
 
@@ -25,7 +27,7 @@ export class ProfileListComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.userAry = this._userService.getUsers(0,5);
+		this.userAry = this._userService.getUsers(this.start,this.count);
 	}
 
 

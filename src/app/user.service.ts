@@ -19,22 +19,29 @@ export class UserService {
 	}
 
 
-	getUsers( start:number, total:number):object[]{
-		if( this.totalUsers < total ){
-			this.fetchMakeUsers( total );
+	getUsers( start:number, count:number):object[]{
+		start = +start; count = +count;
+		let first = Math.max(start - 1, 0);
+		let last = first + count;
+		console.log("getUsers() asked for start:", start, ", count: ", count);
+		if( this.totalUsers < (start + count) ){
+			this.fetchMakeUsers( start + count );
 		}
-		return this.userAry.slice(start, total );
+		let copy = this.userAry.slice( first, last );
+		console.log("getUsers() returning:", copy, ", of:", this.userAry );
+		return copy;
 	}
 
-	fetchMakeUsers( total:number = this.MIN_NUM_USERS ){
+	fetchMakeUsers( count:number = this.MIN_NUM_USERS ){
 
-		this.totalUsers = total;
+		this.totalUsers = count;
 
 		do {
 			//console.log("Building new user");
 			this.userAry.push(this.buildRandomUser());
 
 		} while (this.userAry.length < this.totalUsers);
+		console.log("fetchMakeUsers() built:", this.userAry );
 	}
 
 
