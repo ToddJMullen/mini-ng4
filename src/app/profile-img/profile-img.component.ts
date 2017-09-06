@@ -25,16 +25,30 @@ import {UserVo} from "../user-vo";
 				,animate("500ms ease-in")
 			)
 		])
+		,trigger("triggerUD",[
+			//states
+			state("up", style({transform: "translateY(-20px)"}) )
+			,state("center", style({transform: "translateY(0) rotate(360deg)"}) )
+			,state("down", style({transform: "translateY(20px)"}) )
+			//transitions
+			,transition("up <=> center, center <=> down"
+				,animate("500ms ease-out")
+			)
+		])
 	]
 })
 export class ProfileImgComponent implements OnInit {
 	STATE_LEFT		= "left";
 	STATE_MIDDLE	= "middle";
 	STATE_RIGHT		= "right";
+	STATE_UP		= "up";
+	STATE_CENTER	= "center";
+	STATE_DOWN		= "down";
 
 	user:UserVo;//still not sure how to bind/move checkbox changes into the original user object.
 
 	profilePosition:string = this.STATE_MIDDLE;
+	profileVPosition:string = this.STATE_CENTER;
 
 	shiftProfile():void{
 		console.log("shiftProfile() from:", this.profilePosition );
@@ -47,6 +61,19 @@ export class ProfileImgComponent implements OnInit {
 					this.profilePosition = this.STATE_LEFT; break;
 		}
 		console.log("shiftProfile() to:", this.profilePosition );
+	}
+
+	shiftProfileVert(){
+		console.log("shiftProfileVert() from:", this.profileVPosition );
+		switch( this.profileVPosition ){
+			case this.STATE_UP:
+					this.profileVPosition = this.STATE_CENTER; break;
+			case this.STATE_CENTER:
+					this.profileVPosition = this.STATE_DOWN; break;
+			case this.STATE_DOWN:
+					this.profileVPosition = this.STATE_CENTER; break;
+		}
+		console.log("shiftProfileVert() to:", this.profileVPosition );
 	}
 
 	/* //moved into the "list" component
