@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
+import {trigger, transition, state, style, animate, keyframes} from "@angular/animations";
+
 import {UserVo} from "../user-vo";
 
 @Component({
@@ -12,10 +14,40 @@ import {UserVo} from "../user-vo";
 		.isGreen{color:#0F0;}
 		.isItalic{font-style:italic;}
 	`]
+	,animations: [
+		trigger("triggerLR",[
+			//states list
+			state("left", style({transform: "translateX(-0px)"}) )
+			,state("middle", style({transform: "translateX(0px)"}) )
+			,state("right", style({transform: "translateX(50px)"}) )
+			//state transitions
+			,transition("left <=> middle, right <=> middle, left <=> right"
+				,animate("500ms ease-in")
+			)
+		])
+	]
 })
 export class ProfileImgComponent implements OnInit {
+	STATE_LEFT		= "left";
+	STATE_MIDDLE	= "middle";
+	STATE_RIGHT		= "right";
 
 	user:UserVo;//still not sure how to bind/move checkbox changes into the original user object.
+
+	profilePosition:string = this.STATE_MIDDLE;
+
+	shiftProfile():void{
+		console.log("shiftProfile() from:", this.profilePosition );
+		switch( this.profilePosition ){
+			case this.STATE_LEFT:
+					this.profilePosition = this.STATE_MIDDLE; break;
+			case this.STATE_MIDDLE:
+					this.profilePosition = this.STATE_RIGHT; break;
+			case this.STATE_RIGHT:
+					this.profilePosition = this.STATE_LEFT; break;
+		}
+		console.log("shiftProfile() to:", this.profilePosition );
+	}
 
 	/* //moved into the "list" component
 	MIN_NUM_USERS:number = 3;

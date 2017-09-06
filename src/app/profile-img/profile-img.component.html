@@ -1,4 +1,7 @@
-<div class="profile"  >
+<div class="profile"
+	 [@triggerLR]="profilePosition"
+	 (click)="shiftProfile()"
+	 >
 	<b (click)=dump($event) >{{user.username}}</b>
 	<br />
 
