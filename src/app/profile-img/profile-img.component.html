@@ -1,8 +1,8 @@
 <div class="profile"
-		[@triggerUD]="profileVPosition"
-		(click)="shiftProfileVert()"
 	 [@triggerLR]="profilePosition"
 	 (click)="shiftProfile()"
+		[@triggerUD]="profileVPosition"
+		(mouseover)="shiftProfileVert()"
 	 >
 	<b (click)=dump($event) >{{user.username}}</b>
 	<br />

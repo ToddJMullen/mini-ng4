@@ -17,9 +17,9 @@ import {UserVo} from "../user-vo";
 	,animations: [
 		trigger("triggerLR",[
 			//states list
-			state("left", style({transform: "translateX(-0px)"}) )
-			,state("middle", style({transform: "translateX(0px)"}) )
-			,state("right", style({transform: "translateX(50px)"}) )
+			state("left", style({transform: "translateX(0px)"}) )
+			,state("middle", style({transform: "translateX(50px)"}) )
+			,state("right", style({transform: "translateX(100px)"}) )
 			//state transitions
 			,transition("left <=> middle, right <=> middle, left <=> right"
 				,animate("500ms ease-in")
@@ -27,9 +27,9 @@ import {UserVo} from "../user-vo";
 		])
 		,trigger("triggerUD",[
 			//states
-			state("up", style({transform: "translateY(-20px)"}) )
+			state("up", style({transform: "translateY(-20px) rotate(-360deg)"}) )
 			,state("center", style({transform: "translateY(0) rotate(360deg)"}) )
-			,state("down", style({transform: "translateY(20px)"}) )
+			,state("down", style({transform: "translateY(20px) rotate(0deg)"}) )
 			//transitions
 			,transition("up <=> center, center <=> down"
 				,animate("500ms ease-out")
