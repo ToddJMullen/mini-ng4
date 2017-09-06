@@ -4,8 +4,8 @@ import {trigger, state, style, transition, animate, keyframes} from "@angular/an
 
 @Component({
 	selector: 'app-root',
-	templateUrl: './app.component.html',
-	styleUrls: [ './app.component.css' ]
+	templateUrl: './app.component.html'
+	,styleUrls: [ './app.component.css' ]
 	, animations: [
 		trigger("scaleSize", [
 			state('small', style({
@@ -17,15 +17,27 @@ import {trigger, state, style, transition, animate, keyframes} from "@angular/an
 			, state("normal", style({
 				transform: "scale(1) rotate(0)"
 			}))
-			, transition("* <=> cooky", animate("1500ms ease-out", keyframes([
-				style({opacity: 1, transform: "rotate(0deg) translateY(0px) translateX(0px)", offset: 0})
-				, style({opacity: .2, transform: "rotate(-270deg) translateY(-30px) translateX(10px)", offset: .3})
-				, style({opacity: .7, transform: "rotate(70deg) translateY(30px) translateX(50px)", offset: .7})
-				, style({opacity: 1, transform: "rotate(-360deg) translateY(0px) translateX(0px)", offset: 1})
-			])))
-			, transition("small => big", animate("300ms ease-in", style({})))
-			, transition("big => small", animate("500ms ease-in-out"))
-			, transition("small <=> normal, normal <=> big", animate("300ms ease-out"))
+			, transition("* <=> cooky"
+				, animate("1500ms ease-out"
+					, keyframes([
+						style({opacity: 1, transform: "rotate(0deg) translateY(0px) translateX(0px)", offset: 0})
+						, style({opacity: .2, transform: "rotate(-270deg) translateY(-30px) translateX(10px)", offset: .3})
+						, style({opacity: .7, transform: "rotate(70deg) translateY(30px) translateX(50px)", offset: .7})
+						, style({opacity: 1, transform: "rotate(-360deg) translateY(0px) translateX(0px)", offset: 1})
+					])
+				)
+			)
+			, transition("small => big"
+				, animate("300ms ease-in"
+					, style({})
+				)
+			)
+			, transition("big => small"
+				, animate("500ms ease-in-out")
+			)
+			, transition("small <=> normal, normal <=> big"
+				, animate("300ms ease-out")
+			)
 		])
 		,
 	]
