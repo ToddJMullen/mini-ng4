@@ -3,46 +3,10 @@ import {Component, OnInit} from '@angular/core';
 import {UserVo} from "../user-vo";
 
 @Component({
-	selector: 'app-profile-img',
-	inputs: ['user'],//<< @ binding to/from markup
-	template:`
-		<div class="profile"  >
-			<b (click)=dump($event) >{{user.username}}</b>
-			<br />
-
-			<i *ngIf="user.role != 'Anonymous' then showImage else showNote" ></i>
-			<ng-template #showImage>
-				Signature
-				<br />
-				<i bind-title="user.username">
-				{{user.imageSrc}}
-				</i>
-			</ng-template>
-			<ng-template #showNote>Anon User <br />(no signature)</ng-template>
-
-			<hr />
-			<i>{{user.role}}</i>
-			<br />
-			<button [disabled]="user.role == 'User'"
-				title="If the user is a 'User' this is disabled.">No Users</button>
-			<br />
-			<input type="checkbox" [checked]='user.checked == "Yes" ' />
-			Checked? {{user.checked}}
-			<br />
-			<input type="checkbox" bind-checked='user.isGreen'
-					(click)="user.isGreen = !user.isGreen" />
-			Is Green?
-			<br />
-			<input type="checkbox" [checked]='user.isBig' />
-			Is Big?
-			<br />
-			<input type="checkbox" [checked]='user.isItalic' />
-			Is Italic?
-			<br />
-		</div>
-	`,
-//	templateUrl: './profile-img.component.html',
-	styleUrls: [ './profile-img.component.css' ]
+	selector: 'app-profile-img'
+	,inputs: ['user']//<< @ binding to/from markup
+	,templateUrl: './profile-img.component.html'
+	,styleUrls: [ './profile-img.component.css' ]
 	,styles:[`
 		.isBig{font-size: 25px;}
 		.isGreen{color:#0F0;}

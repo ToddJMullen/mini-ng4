@@ -1,3 +1,34 @@
-<p>
-  profile-img works!
-</p>
+<div class="profile"  >
+	<b (click)=dump($event) >{{user.username}}</b>
+	<br />
+
+	<i *ngIf="user.role != 'Anonymous' then showImage else showNote" ></i>
+	<ng-template #showImage>
+		Signature
+		<br />
+		<i bind-title="user.username">
+			{{user.imageSrc}}
+		</i>
+	</ng-template>
+	<ng-template #showNote>Anon User <br />(no signature)</ng-template>
+
+	<hr />
+	<i>{{user.role}}</i>
+	<br />
+	<button [disabled]="user.role == 'User'"
+		title="If the user is a 'User' this is disabled.">No Users</button>
+	<br />
+	<input type="checkbox" [checked]='user.checked == "Yes" ' />
+	Checked? {{user.checked}}
+	<br />
+	<input type="checkbox" bind-checked='user.isGreen'
+		   (click)="user.isGreen = !user.isGreen" />
+	Is Green?
+	<br />
+	<input type="checkbox" [checked]='user.isBig' />
+	Is Big?
+	<br />
+	<input type="checkbox" [checked]='user.isItalic' />
+	Is Italic?
+	<br />
+</div>
