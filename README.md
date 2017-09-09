@@ -1,3 +1,6 @@
+This is just a project I created to follow along with & build on some tutorials in order to focus on the
+ changes of method, architecture, & workflow of Angular 4 / Angular CLI.
+
 # DesignCourse
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.1.
